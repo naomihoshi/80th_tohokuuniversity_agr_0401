@@ -2,22 +2,6 @@
    80周年記念サイト用CSS
    ============================================ */
 
-/* Material Icons（既にGoogle CDNから読み込んでいるので不要）
-   ローカルで使いたい場合のみ以下を有効化 */
-/*
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(../fonts/MaterialIcons-Regular.eot);
-  src: local('Material Icons'),
-    local('MaterialIcons-Regular'),
-    url(../fonts/MaterialIcons-Regular.woff2) format('woff2'),
-    url(../fonts/MaterialIcons-Regular.woff) format('woff'),
-    url(../fonts/MaterialIcons-Regular.ttf) format('truetype');
-}
-*/
-
 /* Material Icons カスタムスタイル */
 .material-icons {
   font-family: 'Material Icons';
@@ -230,18 +214,6 @@ body {
 }
 
 /* ============================================
-   お知らせ
-   ============================================ */
-.notice-badge {
-  background-color: var(--primary-green);
-  color: var(--white);
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  margin-right: 1rem;
-}
-
-/* ============================================
    テーブル
    ============================================ */
 .table > :not(caption) > * > * {
@@ -290,7 +262,6 @@ body {
   text-decoration: none;
 }
 
-/* TOTOPアイコン */
 .totop {
   position: absolute;
   top: -60px;
@@ -323,10 +294,27 @@ body {
 
 .article-content h3 {
   color: var(--primary-green);
+  font-size: 1.3rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--light-green);
+}
+
+.article-content h4 {
+  color: var(--primary-green);
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.content-list {
+  padding-left: 1.5rem;
+}
+
+.content-list li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
 }
 
 .breadcrumb {
@@ -344,26 +332,30 @@ body {
 }
 
 .news-item {
+  position: relative;
   transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
 }
 
 .news-item:hover {
-  transform: translateX(10px);
-  background-color: #f8f9fa !important;
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.15) !important;
+  border-color: var(--light-green);
+}
+
+.news-meta {
+  min-width: 180px;
 }
 
 /* ============================================
-   80年の歩み - 透明感のある装飾
+   80年の歩み
    ============================================ */
-
-/* セクション余白を最小限に */
 #history {
   padding-top: 2rem !important;
   padding-bottom: 2rem !important;
   background-color: #fafafa;
 }
 
-/* 画像装飾（枠なし、透明度高め） */
 .history-image-divider {
   width: 100%;
   position: relative;
@@ -386,7 +378,6 @@ body {
   transform: scale(1.01);
 }
 
-/* 上下のグラデーションオーバーレイ */
 .history-image-divider::before,
 .history-image-divider::after {
   content: '';
@@ -398,7 +389,6 @@ body {
   z-index: 1;
 }
 
-/* 上部グラデーション（白からフェードイン） */
 .history-image-divider::before {
   top: 0;
   background: linear-gradient(
@@ -409,7 +399,6 @@ body {
   );
 }
 
-/* 下部グラデーション（白へフェードアウト） */
 .history-image-divider::after {
   bottom: 0;
   background: linear-gradient(
@@ -420,7 +409,6 @@ body {
   );
 }
 
-/* テーブルとの間隔を最小限に */
 .history-image-divider.mb-3 {
   margin-bottom: 0.5rem !important;
 }
@@ -429,7 +417,6 @@ body {
   margin-top: 0.5rem !important;
 }
 
-/* テーブルのpadding調整 */
 #history .table {
   margin-bottom: 0;
 }
@@ -449,55 +436,80 @@ body {
   margin-bottom: 0.25rem;
 }
 
-/* セクションタイトルの余白調整 */
 #history .section-title {
   margin-bottom: 1.5rem !important;
   padding: 1rem 0;
 }
 
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
-  #history {
-    padding-top: 1.5rem !important;
-    padding-bottom: 1.5rem !important;
-  }
-  
-  .history-image-divider img {
-    opacity: 0.45;
-  }
-  
-  #history .table td,
-  #history .table th {
-    padding: 0.5rem;
-    font-size: 0.9rem;
-  }
-  
-  #history .section-title {
-    margin-bottom: 1rem !important;
-    font-size: 1.5rem;
-  }
+/* 時代別グラデーションカラー */
+.history-era-genesis {
+  background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%) !important;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1rem 0.5rem;
+  color: white;
 }
 
-@media (max-width: 576px) {
-  .history-image-divider::before,
-  .history-image-divider::after {
-    height: 40%;
-  }
-  
-  .history-image-divider.mb-3 {
-    margin-bottom: 0.25rem !important;
-  }
-  
-  .history-image-divider.mt-3 {
-    margin-top: 0.25rem !important;
-  }
+.history-era-genesis::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.1));
+}
+
+.history-era-amemiya {
+  background: linear-gradient(135deg, #2E7D32 0%, #388E3C 100%) !important;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1rem 0.5rem;
+  color: white;
+}
+
+.history-era-amemiya::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.15));
+}
+
+.history-era-aobayama {
+  background: linear-gradient(135deg, #388E3C 0%, #43A047 100%) !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(67, 160, 71, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  padding: 1rem 0.5rem;
+  color: white;
+}
+
+.history-era-aobayama::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.2));
 }
 
 /* ============================================
-   寄付セクション - 簡略版
+   寄付セクション
    ============================================ */
-
-/* 理由カード（簡略版） */
 .reason-card-simple {
   transition: all 0.3s ease;
   border: 1px solid #e0e0e0;
@@ -515,7 +527,6 @@ body {
   border-color: var(--light-green);
 }
 
-/* 使途リスト */
 .donation-usage-list {
   list-style: none;
   padding: 0;
@@ -541,7 +552,6 @@ body {
   font-size: 1.5rem;
 }
 
-/* 金額表示ボックス */
 .donation-amount-box {
   border: 2px solid var(--light-green);
 }
@@ -551,7 +561,6 @@ body {
   border-radius: 10px;
 }
 
-/* シンプルリスト */
 .simple-list {
   list-style: none;
   padding: 0;
@@ -574,251 +583,9 @@ body {
   font-size: 1.1rem;
 }
 
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
-  .reason-card-simple {
-    min-height: 100px;
-  }
-  
-  .reason-card-simple .material-icons {
-    font-size: 2rem !important;
-  }
-  
-  .donation-plan .display-4 {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .reason-card-simple {
-    min-height: 90px;
-  }
-  
-  .reason-card-simple p {
-    font-size: 0.8rem;
-  }
-}
-
-/* ============================================
-   お知らせページ用スタイル
-   ============================================ */
-
-/* ニュース一覧アイテム */
-.news-item {
-  position: relative;
-  transition: all 0.3s ease;
-  border: 1px solid #e0e0e0;
-}
-
-.news-item:hover {
-  transform: translateX(5px);
-  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.15) !important;
-  border-color: var(--light-green);
-}
-
-.news-meta {
-  min-width: 180px;
-}
-
-/* 記事ページ */
-.article-header {
-  border-left: 5px solid var(--primary-green);
-  padding-left: 1.5rem;
-}
-
-.article-content {
-  line-height: 1.8;
-}
-
-.article-content h3 {
-  color: var(--primary-green);
-  font-size: 1.3rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--light-green);
-}
-
-.article-content h4 {
-  color: var(--primary-green);
-  font-size: 1.1rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.content-list {
-  padding-left: 1.5rem;
-}
-
-.content-list li {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
-}
-
-/* バッジのバリエーション */
-.notice-badge.bg-info {
-  background-color: #0dcaf0 !important;
-}
-
-.notice-badge.bg-warning {
-  background-color: #ffc107 !important;
-}
-
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
-  .news-meta {
-    min-width: auto;
-  }
-  
-  .article-content h3 {
-    font-size: 1.2rem;
-  }
-}
-
-/* ============================================
-   80年の歩み - 時代別グラデーションカラー（改善版）
-   ============================================ */
-
-/* 創設期（深い緑〜濃い緑） */
-.history-era-genesis {
-  background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 100%) !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.history-era-genesis::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 30%;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.1));
-}
-
-/* 雨宮時代（標準の緑） */
-.history-era-amemiya {
-  background: linear-gradient(135deg, #2E7D32 0%, #388E3C 100%) !important;
-  position: relative;
-  overflow: hidden;
-}
-
-.history-era-amemiya::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 30%;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.15));
-}
-
-/* 青葉山時代（鮮やかだが濃い緑 - アクセシブル）*/
-.history-era-aobayama {
-  background: linear-gradient(135deg, #388E3C 0%, #43A047 100%) !important;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 25px rgba(67, 160, 71, 0.4);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-}
-
-/* 青葉山時代に輝きのアクセント */
-
-
-.history-era-aobayama::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 40%;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.2));
-}
-
-@keyframes sparkle {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-/* 共通スタイル */
-.history-era-genesis,
-.history-era-amemiya,
-.history-era-aobayama {
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-  padding: 1rem 0.5rem;
-  border: none;
-  transit▍
-
-/* ============================================
-   学部長挨拶セクション - 同じ背景内に配置
-   ============================================ */
-
-/* 写真のラッパー */
-.dean-photo-wrapper {
-  width: 100%;
-  max-width: 280px;
-  margin: 0 auto;
-}
-
-/* 学部長の写真 */
-.dean-photo {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* 余白調整 */
-#message .row.g-3 {
-  gap: 1rem;
-}
-
-/* タブレット */
-@media (max-width: 991px) {
-  .dean-photo-wrapper {
-    max-width: 240px;
-  }
-}
-
-/* モバイル：小さく表示 */
-@media (max-width: 767px) {
-  .dean-photo-wrapper {
-    max-width: 200px;
-  }
-  
-  #message .row.g-3 {
-    gap: 1rem;
-  }
-  
-  #message h3 {
-    font-size: 1.3rem;
-  }
-}
-
-/* 極小画面 */
-@media (max-width: 576px) {
-  .dean-photo-wrapper {
-    max-width: 160px;
-  }
-  
-  #message .row.g-3 {
-    gap: 0.75rem;
-  }
-}
-
 /* ============================================
    バッジの色分け統一
    ============================================ */
-
-/* 基本スタイル */
 .notice-badge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
@@ -827,33 +594,141 @@ body {
   font-weight: 600;
   color: #ffffff;
   margin-right: 0.5rem;
-  /* デフォルトカラー（bg-*がない場合） */
   background-color: var(--primary-green);
 }
 
-/* イベント・予定 - 青系 */
 .notice-badge.bg-info {
   background-color: #0dcaf0 !important;
 }
 
-/* 募集・寄付 - 緑系 */
 .notice-badge.bg-success {
   background-color: var(--primary-green) !important;
 }
 
-/* お知らせ・重要 - 黄色系 */
 .notice-badge.bg-warning {
   background-color: #ffc107 !important;
-  color: #212529 !important; /* 視認性のため黒文字 */
+  color: #212529 !important;
 }
 
-/* ニュース・新着 - グレー系 */
 .notice-badge.bg-secondary {
   background-color: #6c757d !important;
 }
 
-/* 終了・締切 - 赤系 */
 .notice-badge.bg-danger {
   background-color: #dc3545 !important;
 }
 
+
+/* 学部長メッセージセクションのスタイル追加 */
+.dean-photo-wrapper {
+    max-width: 300px;
+    width: 100%;
+}
+
+.dean-photo {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.message-content h3 {
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.message-text p {
+    text-align: justify;
+    color: #333;
+}
+
+.signature {
+    background: linear-gradient(to right, transparent, rgba(76, 175, 80, 0.05));
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+/* モバイル対応 */
+@media (max-width: 767px) {
+    .dean-photo-wrapper {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .message-content h3 {
+        text-align: center;
+        font-size: 1.3rem;
+    }
+    
+    .message-content .fst-italic {
+        text-align: center;
+    }
+    
+    .signature {
+        text-align: center !important;
+    }
+}
+
+/* ============================================
+   レスポンシブ: モバイル専用スタイル
+   ============================================ */
+@media (max-width: 767px) {
+    /* ヒーローセクションの画像透明度調整（モバイルのみ） */
+    .jumbotron-fluid {
+        position: relative;
+    }
+    
+    .jumbotron-fluid::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.3);
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    .jumbotron-fluid .container {
+        position: relative;
+        z-index: 2;
+    }
+    
+    /* ヒーロー画像自体の明度を上げる */
+    .jumbotron-fluid img {
+        filter: brightness(1.2) contrast(0.9);
+    }
+    
+    /* 学部長メッセージ - モバイル対応 */
+    .dean-photo-wrapper {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .message-content h3 {
+        text-align: center;
+        font-size: 1.3rem;
+    }
+    
+    .message-content .fst-italic {
+        text-align: center;
+    }
+    
+    .signature {
+        text-align: center !important;
+    }
+}
+
+.signature-simple {
+    border-top: 2px solid var(--primary-green);
+    padding-top: 1rem;
+}
+
+/* モバイル対応 */
+@media (max-width: 767px) {
+    .signature-simple {
+        text-align: center !important;
+        border-top: 2px solid var(--primary-green);
+        margin-top: 2rem;
+    }
+}
