@@ -199,6 +199,14 @@ body {
   background: linear-gradient(to top, var(--white), transparent);
 }
 
+/* モバイルではグラデーションを軽減 */
+@media (max-width: 767px) {
+  .jumbotron-fluid::after {
+    height: 80px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.9), transparent);
+  }
+}
+
 .hero-badge {
   position: absolute;
   top: 20px;
@@ -672,7 +680,7 @@ body {
    レスポンシブ: モバイル専用スタイル
    ============================================ */
 @media (max-width: 767px) {
-    /* ヒーローセクションの画像透明度調整（モバイルのみ） */
+    /* ヒーローセクションの画像透明度調整(モバイルのみ) */
     .jumbotron-fluid {
         position: relative;
     }
@@ -684,7 +692,7 @@ body {
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0.1);
         z-index: 1;
         pointer-events: none;
     }
@@ -694,10 +702,7 @@ body {
         z-index: 2;
     }
     
-    /* ヒーロー画像自体の明度を上げる */
-    .jumbotron-fluid img {
-        filter: brightness(1.2) contrast(0.9);
-    }
+    /* ヒーロー画像のフィルターは削除 */
     
     /* 学部長メッセージ - モバイル対応 */
     .dean-photo-wrapper {
@@ -730,5 +735,36 @@ body {
         text-align: center !important;
         border-top: 2px solid var(--primary-green);
         margin-top: 2rem;
+    }
+}
+
+/* ============================================
+   メール登録バナー
+   ============================================ */
+.mail-registration-banner {
+    cursor: pointer;
+}
+
+.mail-registration-banner img {
+    transition: transform 0.3s ease;
+}
+
+.mail-registration-banner:hover img {
+    transform: scale(1.02);
+}
+
+/* モバイル対応 */
+@media (max-width: 767px) {
+    .mail-registration-banner {
+        border-radius: 8px !important;
+    }
+    
+    /* モバイルでは100%幅に戻す */
+    .mail-registration-banner {
+        max-width: 100% !important;
+    }
+    
+    section.bg-light > .container > div[style*="max-width: 66.67%"] {
+        max-width: 100% !important;
     }
 }
